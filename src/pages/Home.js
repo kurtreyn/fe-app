@@ -146,7 +146,8 @@ export default function Home({ occupations, states }) {
       </div>
       <div className="container form-container">
         <Form>
-          <Form.Group className="form-group">
+          <Form.Group controlId="form-name">
+            <Form.Label>Full Name</Form.Label>
             <Form.Control
               className="form-element"
               required
@@ -160,7 +161,10 @@ export default function Home({ occupations, states }) {
             <Form.Control.Feedback type="invalid">
               {errors.name}
             </Form.Control.Feedback>
+          </Form.Group>
 
+          <Form.Group controlId="form-email">
+            <Form.Label>Email</Form.Label>
             <Form.Control
               className="form-element"
               required
@@ -174,7 +178,10 @@ export default function Home({ occupations, states }) {
             <Form.Control.Feedback type="invalid">
               {errors.email}
             </Form.Control.Feedback>
+          </Form.Group>
 
+          <Form.Group controlId="form-occupation">
+            <Form.Label>Select Occupation</Form.Label>
             <Form.Select
               className="form-element"
               required
@@ -192,7 +199,13 @@ export default function Home({ occupations, states }) {
                   return <option>{occupation}</option>;
                 })}
             </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.occupation}
+            </Form.Control.Feedback>
+          </Form.Group>
 
+          <Form.Group controlId="form-state">
+            <Form.Label>Select State</Form.Label>
             <Form.Select
               className="form-element"
               required
@@ -212,7 +225,10 @@ export default function Home({ occupations, states }) {
             <Form.Control.Feedback type="invalid">
               {errors.state}
             </Form.Control.Feedback>
+          </Form.Group>
 
+          <Form.Group controlId="form-password">
+            <Form.Label>Password</Form.Label>
             <Form.Control
               className="form-element"
               required
@@ -226,7 +242,10 @@ export default function Home({ occupations, states }) {
             <Form.Control.Feedback type="invalid">
               {errors.password}
             </Form.Control.Feedback>
+          </Form.Group>
 
+          <Form.Group controlId="form-password-confirm">
+            <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               className="form-element"
               required
