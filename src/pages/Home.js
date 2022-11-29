@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import FormInput from '../components/FormInput';
-import FormDropdown from '../components/FormDropdown';
+// import FormInput from '../components/FormInput';
+// import FormDropdown from '../components/FormDropdown';
 import ModalWindow from '../components/ModalWindow';
-import { Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
-export default function Home() {
+export default function Home({ occupations, states }) {
+  // console.log('occupations', occupations);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -133,6 +134,8 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formReset]);
 
+  // console.log('form', form);
+
   return (
     <>
       <div className="container-fluid">
@@ -142,9 +145,10 @@ export default function Home() {
         </div>
       </div>
       <div className="container form-container">
-        <div className="row form-row">
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-col">
-            <FormInput
+        <Form>
+          <Form.Group className="form-group">
+            <Form.Control
+              className="form-element"
               required
               type="text"
               placeholder="full name"
@@ -153,10 +157,12 @@ export default function Home() {
               isInvalid={!!errors.name}
               errors={errors.name}
             />
-          </div>
+            <Form.Control.Feedback type="invalid">
+              {errors.name}
+            </Form.Control.Feedback>
 
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-col">
-            <FormInput
+            <Form.Control
+              className="form-element"
               required
               type="text"
               placeholder="email"
@@ -165,12 +171,12 @@ export default function Home() {
               isInvalid={!!errors.email}
               errors={errors.email}
             />
-          </div>
-        </div>
+            <Form.Control.Feedback type="invalid">
+              {errors.email}
+            </Form.Control.Feedback>
 
-        <div className="row form-row">
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-col">
-            <FormDropdown
+            <Form.Select
+              className="form-element"
               required
               type="select"
               placeholder="Select Occupation"
@@ -179,26 +185,36 @@ export default function Home() {
               isInvalid={!!errors.occupation}
               id="occupations-field"
               errors={errors.occupation}
-            />
-          </div>
+            >
+              <option>Select Occupation</option>
+              {occupations &&
+                occupations.map((occupation) => {
+                  return <option>{occupation}</option>;
+                })}
+            </Form.Select>
 
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-col">
-            <FormDropdown
+            <Form.Select
+              className="form-element"
               required
-              type="select"
               placeholder="Select State"
               value={form.state}
               onChange={(e) => setField('state', e.target.value.trim())}
               isInvalid={!!errors.state}
               id="states-field"
               errors={errors.state}
-            />
-          </div>
-        </div>
+            >
+              <option>Select State</option>
+              {states &&
+                states.map((state) => {
+                  return <option>{state}</option>;
+                })}
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.state}
+            </Form.Control.Feedback>
 
-        <div className="row form-row">
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-col">
-            <FormInput
+            <Form.Control
+              className="form-element"
               required
               type="password"
               placeholder="password"
@@ -207,10 +223,12 @@ export default function Home() {
               isInvalid={!!errors.password}
               errors={errors.password}
             />
-          </div>
+            <Form.Control.Feedback type="invalid">
+              {errors.password}
+            </Form.Control.Feedback>
 
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-col">
-            <FormInput
+            <Form.Control
+              className="form-element"
               required
               type="password"
               placeholder="confirm password"
@@ -219,8 +237,11 @@ export default function Home() {
               isInvalid={!!errors.passconfirm}
               errors={errors.passconfirm}
             />
-          </div>
-        </div>
+            <Form.Control.Feedback type="invalid">
+              {errors.passconfirm}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Form>
         <div className="row form-row">
           <Button
             variant="primary"

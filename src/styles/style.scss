@@ -23,6 +23,7 @@ body {
   border: solid black 1px;
   padding: 1rem;
   margin-top: 10%;
+
   .form-row {
     display: flex;
     justify-content: center;
@@ -39,4 +40,8 @@ body {
 
 .home-button {
   width: 100px;
+}
+
+.form-element {
+  margin-bottom: 5px;
 }
